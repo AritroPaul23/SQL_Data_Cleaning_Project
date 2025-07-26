@@ -214,11 +214,19 @@ SELECT * FROM layoffs_staging2
 WHERE company = 'Appsmith';  -- Now industry showing as product
 ```
 
-## Outlier Detection & Treatment: Identifying and addressing unusual data points.
 
 # 📊 Cleaned Data
 The cleaned_file: <a href="https://github.com/AritroPaul23/SQL_Data_Cleaning_Project/blob/main/layoffs_cleaned.csv">layoffs_cleaned</a>
 
 
+### Stay Updated and Join the Community
+
+- **LinkedIn**: [Connect with me professionally](https://www.linkedin.com/in/aritropaul23/)
+
+## Author
+
+This project is part of my portfolio, showcasing the SQL skills essential for data analyst roles. If you have any questions, feedback, or would like to collaborate, feel free to get in touch!
+
 # 🤝 Contributions
-Feel free to open issues or submit pull requests if you have suggestions or improvements!
+
+Feel free to ⭐ star the repo if you find it helpful, and fork it to explore further!
