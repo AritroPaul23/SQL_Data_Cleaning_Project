@@ -11,7 +11,7 @@ SQL Workbench/CLI: For executing SQL scripts and interacting with the database.
 
 # 🚀 Getting Started
 
-Import the initial dataset: - <a href="https://https://github.com/AritroPaul23/SQL_Data_Cleaning_Project/blob/main/layoffs.csv">Dataset</a>
+Import the initial dataset: - <a href="https://github.com/AritroPaul23/SQL_Data_Cleaning_Project/blob/main/layoffs.csv">Dataset</a>
 
 Execute cleaning scripts: Navigate to the sql/ directory and run the cleaning scripts in the specified order (if applicable).
 
