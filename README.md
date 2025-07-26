@@ -11,7 +11,7 @@ SQL Workbench/CLI: For executing SQL scripts and interacting with the database.
 
 # 🚀 Getting Started
 
-Import the initial dataset: (Instructions on how to import your raw data into MySQL, e.g., source your_raw_data.sql or using a client tool)
+Import the initial dataset: - <a href="https://github.com/AritroPaul23/Data_Analysis_Dashboard/blob/main/BlinkIT%20Grocery%20Data_Analysis.xlsx">Dataset</a>
 
 Execute cleaning scripts: Navigate to the sql/ directory and run the cleaning scripts in the specified order (if applicable).
 
