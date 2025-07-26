@@ -18,6 +18,23 @@ Execute cleaning scripts: Navigate to the sql/ directory and run the cleaning sc
 # 🗃️ Data Cleaning Steps (Example)
 ## Handling Missing Values: Identification and imputation/removal of NULL or empty entries.
 
+```sql
+-- Let's change percentage_laid_off to Integer
+
+SELECT percentage_laid_off, LEFT(percentage_laid_off, LENGTH(percentage_laid_off)-1)
+FROM layoffs_staging3;
+
+UPDATE layoffs_staging3
+SET percentage_laid_off = CASE
+							WHEN percentage_laid_off = '' THEN NULL
+                            ELSE CAST( LEFT(percentage_laid_off, LENGTH(percentage_laid_off)-1) AS UNSIGNED ) END;
+                            
+ALTER TABLE layoffs_staging3
+MODIFY COLUMN percentage_laid_off INTEGER;
+
+SELECT * FROM layoffs_staging3;
+```
+
 ## Duplicate Removal: Eliminating redundant records.
 
 ```sql
