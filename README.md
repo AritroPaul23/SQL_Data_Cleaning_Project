@@ -163,6 +163,40 @@ MODIFY COLUMN funds_raised_in_millions INTEGER; -- Now changing the datatype to 
 
 ## Standardization & Formatting: Unifying inconsistent data entries (e.g., date formats, text casing).
 
+```sql
+-- Standardizing data ( Finding issues in your data and fixing it )
+-- If you have some extra spaces in your records of any column you have to clean it.
+
+SELECT company , TRIM(company)
+FROM layoffs_staging2;
+
+UPDATE layoffs_staging2
+SET company = TRIM(company); -- Removing the extr spaces from the recods company and updating the new records without extraspaces in the same column.
+
+SELECT * FROM layoffs_staging2;
+
+-- Let's look at the industry now
+
+SELECT DISTINCT industry
+FROM layoffs_staging2
+ORDER BY 1 ASC;  -- 1 company with blank industry
+
+SELECT *
+FROM layoffs_staging2
+WHERE industry = ''; -- Company name is Appsmith where industry = blank / ''
+
+UPDATE layoffs_staging2
+SET industry = 'Product'
+WHERE industry = ''; -- Updating industry = 'Product' where industry = '' ( Seached in google company like Appsmith, the companies showing in google are also in this table their industry is showing as product )
+
+SELECT DISTINCT industry
+FROM layoffs_staging2
+ORDER BY 1 ASC;    -- Prevoiusly Distinct company count was 31 now 30, let's check further.
+
+SELECT * FROM layoffs_staging2
+WHERE company = 'Appsmith';  -- Now industry showing as product
+```
+
 ## Outlier Detection & Treatment: Identifying and addressing unusual data points.
 
 # 📊 Cleaned Data
