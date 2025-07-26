@@ -99,6 +99,68 @@ SELECT * FROM layoffs_staging2;
 
 ## Data Type Correction: Ensuring columns have appropriate data types.
 
+```sql
+/* This is imp. we need to change date columns datatype from text to date datatype*/
+
+CREATE TABLE layoffs_staging3
+SELECT * FROM layoffs_staging2
+WHERE 1=1;  -- Creating another table to have a back up if i messed it up
+
+SELECT DISTINCT stage
+FROM layoffs_staging3
+ORDER BY 1 ASC;  -- Checking if it matching with last process of standardization
+
+SELECT `date`, STR_TO_DATE(`date`,'%m/%d/%Y'), STR_TO_DATE(`date`,'%m-%d-%Y')
+FROM layoffs_staging3;
+
+/* We have to make all the dates in same format */
+
+SELECT `date`, STR_TO_DATE(REPLACE(`date`,'-','/'), '%m/%d/%Y')
+FROM layoffs_staging3;
+
+-- Applying 1st format change
+
+UPDATE layoffs_staging3
+SET `date` = STR_TO_DATE(REPLACE(`date`,'-','/'), '%m/%d/%Y');
+
+SELECT * FROM layoffs_staging3;
+
+-- Still in this table the `date` field is in text datatype we have to change it for further calculations
+
+ALTER TABLE layoffs_staging3
+MODIFY COLUMN `date` date; -- Now it is done
+
+-- same thing with date_added
+
+SELECT date_added, STR_TO_DATE(REPLACE(date_added,'-','/'), '%m/%d/%Y')
+FROM layoffs_staging3;
+
+UPDATE layoffs_staging3
+SET date_added = STR_TO_DATE(REPLACE(date_added,'-','/'), '%m/%d/%Y');
+
+ALTER TABLE layoffs_staging3
+MODIFY COLUMN date_added date;
+
+SELECT * FROM layoffs_staging3;
+
+-- Let's change funds_raised_in_millions from text to integer
+
+SELECT funds_raised_in_millions, RIGHT(funds_raised_in_millions, LENGTH(funds_raised_in_millions)-1)
+FROM layoffs_staging3; -- Omitting the $ sign
+
+UPDATE layoffs_staging3
+SET funds_raised_in_millions = RIGHT(funds_raised_in_millions, LENGTH(funds_raised_in_millions)-1); -- Updating the records without $ in the table
+
+SELECT * FROM layoffs_staging3;
+
+UPDATE layoffs_staging3
+SET funds_raised_in_millions = NULL
+WHERE funds_raised_in_millions = ''; -- Inserting NULL records in the place of blank records
+
+ALTER TABLE layoffs_staging3
+MODIFY COLUMN funds_raised_in_millions INTEGER; -- Now changing the datatype to text to INTEGER
+```
+
 ## Standardization & Formatting: Unifying inconsistent data entries (e.g., date formats, text casing).
 
 ## Outlier Detection & Treatment: Identifying and addressing unusual data points.
