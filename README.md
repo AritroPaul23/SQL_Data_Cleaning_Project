@@ -15,19 +15,32 @@ Import the initial dataset: - <a href="https://github.com/AritroPaul23/SQL_Data_
 
 Execute cleaning scripts: Navigate to the sql/ directory and run the cleaning scripts in the specified order (if applicable).
 
-🗃️ Data Cleaning Steps (Example)
-Handling Missing Values: Identification and imputation/removal of NULL or empty entries.
+# 🗃️ Data Cleaning Steps (Example)
+## Handling Missing Values: Identification and imputation/removal of NULL or empty entries.
 
-Duplicate Removal: Eliminating redundant records.
+## Duplicate Removal: Eliminating redundant records.
 
-Data Type Correction: Ensuring columns have appropriate data types.
+```sql
+/* Now we are going to make a lot changes in the raw data so if we make some mistake in the process we should have the raw data to go back.
+So we will create another table with the same column, structure and record like layoffs*/
 
-Standardization & Formatting: Unifying inconsistent data entries (e.g., date formats, text casing).
 
-Outlier Detection & Treatment: Identifying and addressing unusual data points.
+CREATE TABLE layoffs_staging   -- Table Creation: MySQL create a new table named layoffs_staging
+SELECT * FROM layoffs          -- Schema Copying: The new layoffs_staging table will inherit the same column names and data types as the layoffs table. It essentially clones the structure of layoffs.
+WHERE 1 = 1;                   -- Data Copying: All rows from the layoffs table will be copied into the newly created layoffs_staging table. The WHERE 1=1 clause is a condition that is always true.
 
-📊 Cleaned Data
+SELECT *
+FROM layoffs_staging;
+```
+
+## Data Type Correction: Ensuring columns have appropriate data types.
+
+## Standardization & Formatting: Unifying inconsistent data entries (e.g., date formats, text casing).
+
+## Outlier Detection & Treatment: Identifying and addressing unusual data points.
+
+# 📊 Cleaned Data
 The cleaned_data/ directory (or a designated database schema/table) will contain the final, processed dataset ready for use.
 
-🤝 Contributions
+# 🤝 Contributions
 Feel free to open issues or submit pull requests if you have suggestions or improvements!
