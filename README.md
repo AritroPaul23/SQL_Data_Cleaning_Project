@@ -217,7 +217,8 @@ WHERE company = 'Appsmith';  -- Now industry showing as product
 ## Outlier Detection & Treatment: Identifying and addressing unusual data points.
 
 # 📊 Cleaned Data
-The cleaned_data/ directory (or a designated database schema/table) will contain the final, processed dataset ready for use.
+The cleaned_file: <a href="https://github.com/AritroPaul23/SQL_Data_Cleaning_Project/blob/main/layoffs_cleaned.csv">layoffs_cleaned</a>
+
 
 # 🤝 Contributions
 Feel free to open issues or submit pull requests if you have suggestions or improvements!
