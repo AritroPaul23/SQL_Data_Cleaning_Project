@@ -26,13 +26,29 @@ FROM layoffs_staging3;
 
 UPDATE layoffs_staging3
 SET percentage_laid_off = CASE
-							WHEN percentage_laid_off = '' THEN NULL
-                            ELSE CAST( LEFT(percentage_laid_off, LENGTH(percentage_laid_off)-1) AS UNSIGNED ) END;
+                          WHEN percentage_laid_off = '' THEN NULL
+                          ELSE CAST( LEFT(percentage_laid_off, LENGTH(percentage_laid_off)-1) AS UNSIGNED ) END;
                             
 ALTER TABLE layoffs_staging3
 MODIFY COLUMN percentage_laid_off INTEGER;
 
 SELECT * FROM layoffs_staging3;
+
+-- These are the records for which total_laid_off AND percentage_laid_off are NULL, so we can delete these recods as for our analysis these aren't necessary.
+SELECT *
+FROM layoffs_staging3
+WHERE total_laid_off IS NULL
+		AND percentage_laid_off IS NULL;
+
+SET SQL_SAFE_UPDATEs = 0;
+
+DELETE
+FROM layoffs_staging3
+WHERE total_laid_off IS NULL
+		AND percentage_laid_off IS NULL;
+        
+SELECT * FROM layoffs_staging3; -- This is our final table ROW Count 3437
+
 ```
 
 ## Duplicate Removal: Eliminating redundant records.
